@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { AiFillCaretDown } from 'react-icons/ai'
-import OutsideClickHandler from 'react-outside-click-handler/build/OutsideClickHandler';
+// import OutsideClickHandler from 'react-outside-click-handler/build/OutsideClickHandler';
 const Filter = () => {
     const [isOpen, setIsOpen] = useState(false);
 
