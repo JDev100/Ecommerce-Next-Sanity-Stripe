@@ -328,6 +328,56 @@ span.text-red {
 /********************/
 /*     PRODUCTS     */
 /********************/
+.products-section {
+  width: 100%;
+  display: flex;  
+}
+@media(max-width: 540px){
+  .products-section{
+    flex-direction: column;
+  }
+}
+.products-section .products-container{
+  flex: 3.3;
+  /* border: 1px solid green; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  padding: 0 20px;
+  justify-content: center;
+  align-items: center;  
+}
+
+.filter-container{
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid white;
+  flex: 1;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+.filter-container h6{
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.filter-container p {
+  padding: 10px 5px;
+  cursor: pointer;
+}
+.filter-box span{
+  /* margin: 15px 0px; */
+  font-size: 14px;
+}
+.filter-box p:hover {
+  background-color: var(--bg-2);
+}
+@media(max-width: 540px){
+  .filter-container{
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+}
+
 
 .desc {
   position: absolute;

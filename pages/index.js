@@ -2,10 +2,13 @@ import React from 'react'
 
 import { Product, FooterBanner, HeroBanner, Filter } from '../components'
 import { client } from '../lib/client';
+import { useStateContext } from '../context/StateContext'
 
 
 const Home = ({ products, bannerData }) => {
-  console.log(bannerData)
+  // console.log(products)
+  const { filteredProducts } = useStateContext()
+
   return (
     <div>
       <HeroBanner bannerData={bannerData.length && bannerData[0]} />
@@ -15,14 +18,21 @@ const Home = ({ products, bannerData }) => {
       </div>
       <div className='products-section'>
 
-        {/* <div className='filter-container'>
-          <Filter />
-        </div> */}
+        <div className='filter-container'>
+          <Filter products={products} />
+        </div>
 
         <div className='products-container'>
-          {products?.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
+          {
+            filteredProducts.length < 1 ? (
+              products?.map((product) => (
+                <Product key={product._id} product={product} />
+              ))
+            ) :
+            filteredProducts?.map((product) => (
+              <Product key={product._id} product={product} />
+            ))
+          }
         </div>
       </div>
 
