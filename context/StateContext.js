@@ -56,7 +56,7 @@ export const StateContext = ({ children }) => {
         console.log(products)
         setCategory(filter)
         if (filter == 'all') {
-            setFilteredProducts([])
+            setFilteredProducts(products)
         }
         else {
             setFilteredProducts(products.filter((item) => item.product_type == filter))
