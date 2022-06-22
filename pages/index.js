@@ -24,11 +24,11 @@ const Home = ({ products, bannerData }) => {
 
         <div className='products-container'>
           {
-            filteredProducts.length < 1 ? (
-              products?.map((product) => (
-                <Product key={product._id} product={product} />
-              ))
-            ) :
+            // filteredProducts.length < 1 ? (
+            //   products?.map((product) => (
+            //     <Product key={product._id} product={product} />
+            //   ))
+            // ) :
             filteredProducts?.map((product) => (
               <Product key={product._id} product={product} />
             ))

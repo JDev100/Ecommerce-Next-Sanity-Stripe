@@ -10,6 +10,10 @@ export const StateContext = ({ children }) => {
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [qty, setQty] = useState(1)
     const [category, setCategory] = useState('all')
+
+    const [priceMin, setPriceMin] = useState(0)
+    const [priceMax, setPriceMax] = useState(9999)
+    const [priceRange, setPriceRange] = useState([0, 9999])
     const [filteredProducts, setFilteredProducts] = useState([])
 
     let foundProduct;
@@ -48,14 +52,39 @@ export const StateContext = ({ children }) => {
     }
 
     /**Recieves filter value and creates a product array containing established category */
-    const filterProductsByCategory = (filter, products) =>{
+    const filterProductsByCategory = async (filter, products) => {
+        console.log(products)
+        setCategory(filter)
         if (filter == 'all') {
             setFilteredProducts([])
         }
         else {
-            setFilteredProducts(products.filter((item) => item.product_type == filter))            
+            setFilteredProducts(products.filter((item) => item.product_type == filter))
         }
         console.log(filteredProducts)
+    }
+
+    /**Recieves a price range and filters products to an array within that range */
+    const filterProductsByPrice = async (priceRange, products) => {
+        if (priceRange[0] > priceRange[1])
+            return
+        if (category == 'all') {
+            const priceFilter = products.filter((item) => (item.price >= priceRange[0] && item.price <= priceRange[1]))
+            // console.log( products.filter((item) => (item.price >= priceRange[0] && item.price <= priceRange[1])).length)
+            // const test =  products.filter((item) => (item.price >= priceRange[0] && item.price <= priceRange[1])).length
+            setFilteredProducts((priceFilter == products ? [] : priceFilter))
+
+        }
+        else {
+            console.log('poop')
+            const clone = products
+            const categoryFilter = products.filter((item) => item.product_type == category)
+            // setFilteredProducts(clone.filter((item) => (item.price >= priceRange[0] && item.price <= priceRange[1])))
+
+            const priceFilter = categoryFilter.filter((item) => (item.price >= priceRange[0] && item.price <= priceRange[1]))
+            setFilteredProducts((priceFilter == categoryFilter ? [] : priceFilter))
+
+        }
     }
 
     const toggleCartItemQuantity = (id, value) => {
@@ -66,7 +95,7 @@ export const StateContext = ({ children }) => {
         if (value === 'inc') {
             const old = cartItems[index]
             const clone = [...cartItems]
-            clone[index] =  {...foundProduct, quantity: foundProduct.quantity + 1}
+            clone[index] = { ...foundProduct, quantity: foundProduct.quantity + 1 }
             setCartItems(clone)
             // setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
             setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price)
@@ -75,7 +104,7 @@ export const StateContext = ({ children }) => {
             if (foundProduct.quantity > 1) {
                 const old = cartItems[index]
                 const clone = [...cartItems]
-                clone[index] =  {...foundProduct, quantity: foundProduct.quantity - 1}
+                clone[index] = { ...foundProduct, quantity: foundProduct.quantity - 1 }
                 setCartItems(clone)
                 // setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price)
@@ -105,7 +134,14 @@ export const StateContext = ({ children }) => {
                 setCategory,
                 filteredProducts,
                 setFilteredProducts,
+                priceMin,
+                setPriceMin,
+                priceMax,
+                setPriceMax,
+                priceRange,
+                setPriceRange,
                 filterProductsByCategory,
+                filterProductsByPrice,
                 showCart,
                 setShowCart,
                 cartItems,

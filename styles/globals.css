@@ -14,9 +14,10 @@ body, * {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
-  
-  
+
+
 }
+
 html {
   background-color: var(--bg);
 }
@@ -237,144 +238,132 @@ span.text-red {
 /********************/
 /* FILTERING SYSTEM */
 /********************/
-.filter-container {
-  max-width: 1300px;
-  padding: 15px 5px;
-  /* position: absolute; */
-}
-
-.filter {
-  position: relative;
-  display: block;
-}
-
-.filter_button {
-  border-radius: 0.125rem;
-  padding: 0.5rem 1rem;
-  background-color: #2b7de9;
-  background-image: none;
-  cursor: pointer;
-  border: transparent;
-  font-weight: 600;
-  color: white;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.filter_button:hover {
-  background-color: #176dde;
-}
-
-.filter_button:focus {
-  outline: 1px dotted;
-  outline: 1px auto -webkit-focus-ring-color;
-}
-
-.filter_dropdown {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  padding: 0.25rem;
-  display: none;
-  width: 16rem;
-  z-index: 50;
-  left: 0;
-  max-height: calc(100vh - 152px);
-  position: absolute;
-  margin-top: 0.5rem;
-  background-color: white;
-}
-
-.filter_options {
-  margin-bottom: 20px;
-}
-
-.filter_dropdown_box {
-  z-index: 500;
-
-  /* width: 500px; */
-  /* display: none; */
-  /* position: absolute; */
-
-  padding: 2rem;
-}
-
-@media (min-width: 768px) {
-  .filter_dropdown {
-    display: block;
-  }
-}
-
-.filter_dropdown_actions {
-  border-top-width: 1px;
-  border-top-color: #e4e7eb;
-  border-top-style: solid;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.75rem 0.5rem 0.25rem 0.5rem;
-}
-
-.filter_dropdown_actions button {
-  border-radius: 0.125rem;
-  padding: 0.25rem 0.5rem;
-  background-color: #2b7de9;
-  border-color: transparent;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
 
 
 
 /********************/
 /*     PRODUCTS     */
 /********************/
+.invisible {
+  display: none;
+}
 .products-section {
   width: 100%;
-  display: flex;  
+  display: flex;
 }
-@media(max-width: 540px){
-  .products-section{
+
+@media(max-width: 540px) {
+  .products-section {
     flex-direction: column;
   }
 }
-.products-section .products-container{
+
+.products-section .products-container {
   flex: 3.3;
   /* border: 1px solid green; */
   /* display: flex; */
   /* flex-direction: column; */
   padding: 0 20px;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
 
-.filter-container{
+.filter-container {
   display: flex;
   flex-direction: column;
   border-right: 1px solid white;
   flex: 1;
   padding-left: 15px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
-.filter-container h6{
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-.filter-container p {
-  padding: 10px 5px;
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  padding-right: 12px;
   cursor: pointer;
 }
-.filter-box span{
+
+.filter-header h6 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.filter-container p {
+  padding: 10px 5px;
+}
+
+.filter-box .filter-content {
+  display: none;
+}
+
+.filter-box, .filter-box-active {
+  border-bottom: 1px solid white;
+}
+
+.filter-box-active .filter-content {
+  display: block;
+  padding-bottom: 15px;
+}
+
+.filter-box-active .filter-header svg {
+  transform: rotate(180deg);
+}
+
+.filter-box span {
   /* margin: 15px 0px; */
   font-size: 14px;
 }
-.filter-box p:hover {
+
+.filter-category p {
+  cursor: pointer;
+
+}
+
+.filter-category p:hover {
   background-color: var(--bg-2);
 }
-@media(max-width: 540px){
-  .filter-container{
+
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+}
+.price-filter svg {
+  cursor: pointer;
+}
+
+.price-filter input {
+
+  width: 50px;
+  /* display: inline-block; */
+  padding: 7px 7px;
+  color: var(--text);
+  background-color: rgba(0, 0, 0, 0);
+}
+.price-filter button {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--text);
+  border: none;
+}
+
+@media(max-width: 540px) {
+  .filter-container {
     width: 100%;
     padding-left: 10px;
     padding-top: 5px;
+    border-right: none;
   }
 }
 
@@ -676,6 +665,7 @@ span.text-red {
   cursor: pointer;
   transition: .3s ease-in-out;
 }
+
 /* .product-detail-image-guitar {
   border-radius: 15px;
   background-color: #ebebeb;
